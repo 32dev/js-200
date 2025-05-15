@@ -1,13 +1,14 @@
 var family = {
-    adress: "Seoul",
+    address: "Busan",
     members: {},
-    addFamily: (age, name, role) => {
+    addFamily: function (age, name, role) {
         this.members[role] = {
             age: age,
             name: name
         }
     },
     getHeadcount: function () {
+        console.log(this.members);
         return Object.keys(this.members).length;
     }
 }
