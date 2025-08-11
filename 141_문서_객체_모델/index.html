@@ -8,14 +8,29 @@
 </head>
 
 <body>
-    <div id="div1">hello DOM</div>
+    <div id="div1">hello</div>
     <ul>
         <li>list item1</li>
         <li>list item2</li>
     </ul>
     <script>
         const divE1 = document.getElementById("div1");
-        console.log(Node.ELEMENT_NODE);
+        console.log(divE1.innerHTML);
+
+        console.log(divE1.nodeType);
+        console.log(Node.ELEMENT_NODE == divE1.nodeeType);
+        console.log(divE1 instanceof HTMLElement)
+        console.log(divE1 instanceof Element);
+        console.log(divE1 instanceof Node);
+        console.log(Element.prototype);
+        console.log(divE1.tagName);
+        console.log(divE1.constructor);
+
+        console.log(divE1 instanceof HTMLDivElement);
+
+        const liEls = document.querySelectorAll('ul li');
+        console.log(liEls.item(0).innerHTML);
+        console.log(liEls.item(1).textContent);
     </script>
 </body>
 
