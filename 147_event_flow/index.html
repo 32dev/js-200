@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>event flow example</title>
+    <style>
+        .box {
+            background: yellow;
+            width: 70px;
+            height: 70px;
+            padding: 20px;
+            border: 1px solid #000;
+            margin-right: 30px;
+            float: left;
+        }
+
+        .box2 {
+            color: #fff;
+            background: #000;
+            height: 100%;
+            line-height: 70px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>DOM event flow</h1>
+    <div id="element1" class="box">
+        <div id="element2" class="box2">버블링</div>
+    </div>
+    <div id="element3" class="box">
+        <div id="element4" class="box2">캡처링</div>
+    </div>
+    <script>
+        element1.addEventListener('click', e=>console.log('요소1 클릭'));
+        element2.addEventListener('click', e=>console.log('요소2 클릭'));
+        element3.addEventListener('click', e=>console.log('요소3 클릭'), true);
+        element4.addEventListener('click', e=>console.log('요소4 클릭'));
+    </script>
+</body>
+
+</html>
