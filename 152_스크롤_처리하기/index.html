@@ -48,13 +48,12 @@
         const navTopOffset = nav.offsetTop;
         window.addEventListener('scroll', e => {
             if (window.pageYOffset >= navTopOffset) {
-                console.log("!");
                 nav.style.position = 'fixed';
                 nav.style.top = 0;
                 nav.style.left = 0;
                 nav.style.right = 0;
             } else {
-                nav.styleposition = '';
+                nav.style.position = '';
                 nav.style.top = '';
             }
         })
