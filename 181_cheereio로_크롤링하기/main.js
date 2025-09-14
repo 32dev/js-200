@@ -3,10 +3,10 @@ const request = require('request');
 const fs = require('fs');
 
 
-fs.readFile('./example.html', (err, data) => {
+fs.readFile('./example.html','utf-8', (err, data) => {
     if (err) return console.log(err);
     const $ = cheerio.load(data);
-    console.log($('#body', '#html').find('li').length);
+    console.log($('body', 'html').find('li').length);
     console.log($('.son', '#people').text());
 });
 
