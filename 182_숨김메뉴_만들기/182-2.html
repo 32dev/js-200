@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>간단한 Drawer Menu</title>
+    <style>
+        .drawer {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            right: -220px;
+            /* 처음엔 숨김 */
+            width: 200px;
+            padding: 10px;
+            background: white;
+            box-shadow: 0 0 36px 0 rgba(0, 0, 0, 0.1);
+            transition: right 0.4s ease-out;
+        }
+
+        .drawer.open {
+            right: 0;
+            /* 열릴 때는 화면 안쪽으로 */
+        }
+    </style>
+</head>
+
+<body>
+    <button id="drawer-opener">open menu</button>
+    <div class="drawer">
+        <h2>숨김 메뉴</h2>
+        <ul>
+            <li>항목 1</li>
+            <li>항목 2</li>
+        </ul>
+    </div>
+
+    <script>
+        const drawer = document.querySelector('.drawer');
+        const button = document.getElementById('drawer-opener');
+
+        button.addEventListener('click', () => {
+            drawer.classList.toggle('open'); // 클래스만 토글
+        });
+    </script>
+</body>
+
+</html>
