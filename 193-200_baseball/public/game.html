@@ -1,13 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
   <link rel="stylesheet" href="./stylesheets/style.css">
   <script src="game.js"></script>
   <title>베이스볼 게임</title>
 </head>
+
 <body>
   <header class="top">
     <div class="container">
@@ -17,7 +20,7 @@
     </div>
   </header>
   <section class="main">
-    <div class="container game-main">      
+    <div class="container game-main">
       <div class="row">
         <div class="col-xs-8 col-sm-8 col-md-6 col-md-offset-3 col-xs-offset-2 col-sm-offset-2">
           <div class="form-group">
@@ -31,11 +34,12 @@
     </div>
   </section>
   <script>
-  (function() {
-    const queryParam = new URLSearchParams(location.search);
-    const game = new BaseballGame(queryParam.get('id'));
-    game.init();
-  })();
+    (function () {
+      const queryParam = new URLSearchParams(location.search);
+      const game = new BaseballGame(queryParam.get('id'));
+      game.init();
+    })();
   </script>
 </body>
+
 </html>
