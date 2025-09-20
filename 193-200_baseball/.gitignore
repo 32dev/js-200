@@ -1,0 +1,4 @@
+.idea
+./node_module
+./models/data.json
+node_modules/
