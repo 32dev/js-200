@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>파일 업로드 예제</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            padding: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>파일 업로드</h2>
+    <input type="file" id="fileInput">
+    <button id="uploadBtn">업로드</button>
+
+    <h2>파일 리스트</h2>
+    <div id="fileList"></div>
+
+    <script>
+        const fileListEl = document.getElementById('fileList');
+        const uploadBtn = document.getElementById('uploadBtn');
+        const fileInput = document.getElementById('fileInput');
+
+        // 파일 업로드 버튼 이벤트
+        uploadBtn.addEventListener('click', async () => {
+            if (!fileInput.files.length) {
+                alert('파일을 선택하세요');
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append("file", fileInput.files[0]);
+
+            try {
+                const res = await fetch("http://localhost:3000/upload", {
+                    method: "POST",
+                    body: formData
+                });
+
+                const text = await res.text();
+                alert(text);
+
+                // 업로드 후 리스트 새로고침
+                loadFileList();
+            } catch (err) {
+                console.error("업로드 실패:", err);
+                alert("업로드 실패!");
+            }
+        });
+
+        // 파일 리스트 불러오기
+        async function loadFileList() {
+            try {
+                const res = await fetch("http://localhost:3000/file_list", {
+                    headers: { Accept: "application/json" },
+                    method: "GET"
+                });
+
+                if (!res.ok) throw new Error("파일 리스트 불러오기 실패");
+
+                const data = await res.json();
+
+                let table = '<table><tr><th>파일명</th><th>업로드 시간</th></tr>';
+                data.forEach(d => {
+                    // 파일명에서 timestamp 추출
+                    const match = d.match(/_(\d+)\./);
+                    let dateStr = "-";
+                    if (match) {
+                        const timestamp = Number(match[1]);
+                        dateStr = new Date(timestamp).toLocaleString();
+                    }
+                    table += `<tr><td>${d}</td><td>${dateStr}</td></tr>`;
+                });
+                table += '</table>';
+                fileListEl.innerHTML = table;
+
+            } catch (err) {
+                console.error(err);
+                fileListEl.innerHTML = "<p>파일 리스트를 불러오지 못했습니다.</p>";
+            }
+        }
+
+        // 첫 페이지 로드 시 파일 리스트 보여주기
+        loadFileList();
+    </script>
+</body>
+
+</html>
